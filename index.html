@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FileReader API</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* Основной стиль */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f7fb;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        button, input[type="file"] {
+    font-size: 1rem;
+    background-color: #000;  /* Черный фон */
+    color: white;  /* Белый текст */
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover, input[type="file"]:hover {
+    background-color: #333;  /* Темно-серый цвет на hover */
+}
+
+/* Кнопка геолокации */
+#getLocation {
+    background-color: #000;  /* Черный фон */
+    color: white;  /* Белый текст */
+}
+
+#getLocation:hover {
+    background-color: #333;  /* Темно-серый цвет на hover */
+}
+
+/* Кнопка захвата фото с камеры */
+#takePicture {
+    background-color: #000;  /* Черный фон */
+    padding: 10px 20px;
+    color: white;  /* Белый текст */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#takePicture:hover {
+    background-color: #333;  /* Темно-серый цвет на hover */
+}
+
+        /* Контейнер для файлов */
+        #fileContainer {
+            margin-top: 40px;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        #fileContent {
+            margin-top: 20px;
+        }
+
+        /* Стиль для области перетаскивания */
+        #dragDropArea {
+            width: 100%;
+            height: 200px;
+            margin-top: 30px;
+            border: 2px dashed #4CAF50;
+            background-color: #f0f9f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            color: #4CAF50;
+            font-size: 1.25rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #dragDropArea:hover {
+            background-color: #e8f5e9;
+        }
+
+        /* Стиль для отображения изображений */
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        /* Стиль для кнопки геолокации и местоположения */
+        #location {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        /* Стиль для кнопки захвата фото с камеры */
+        #takePicture {
+            margin-top: 20px;
+            font-size: 1rem;
+            background-color: #FF5722;
+            padding: 10px 20px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #takePicture:hover {
+            background-color: #e64a19;
+        }
+
+        /* Видео и холст */
+        video {
+            border-radius: 10px;
+            max-width: 100%;
+            margin-top: 20px;
+        }
+
+        canvas {
+            display: block;
+            margin-top: 20px;
+            max-width: 100%;
+            border: 2px solid #FF5722;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Загрузка файлов и взаимодействие с устройствами</h1>
+
+    <!-- Элемент для выбора файла -->
+    <input type="file" id="fileInput" accept="image/*, .txt">
+
+    <!-- Контейнер для отображения файлов -->
+    <div id="fileContainer">
+        <h3>Загруженные файлы:</h3>
+        <div id="fileContent"></div>
+    </div>
+
+    <!-- Область для перетаскивания файлов -->
+    <div id="dragDropArea">
+        Перетащите файлы сюда
+    </div>
+
+    <!-- Кнопка для получения местоположения -->
+    <button id="getLocation">Получить местоположение</button>
+    <div id="location"></div>
+
+    <!-- Видеопоток с веб-камеры -->
+    <h3>Использование веб-камеры</h3>
+    <video id="video" width="320" height="240" autoplay></video>
+    <button id="takePicture">Сделать фото</button>
+    <canvas id="canvas" width="320" height="240"></canvas>
+
+    <script src="script.js"></script>
+</body>
+</html>
